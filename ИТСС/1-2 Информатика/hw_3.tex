@@ -1,0 +1,325 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ucs}
+\usepackage{cmap}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsfonts}
+\usepackage[english,russian]{babel}
+\usepackage[T1,T2A]{fontenc}
+\frenchspacing
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\usepackage{tikz-cd}
+
+\begin{document}
+\renewcommand{\arraystretch}{1.5}
+
+
+
+\large
+\begin{titlepage}
+\begin{center}
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ «НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ «ВЫСШАЯ ШКОЛА ЭКОНОМИКИ»
+
+\vspace{1cm}
+
+Московский институт электроники и математики им. А.Н. Тихонова
+
+\vspace{2cm}
+
+Ефремов Виктор Васильевич, группа БИТ 203
+
+\vspace{4cm}
+
+Отчет
+
+по домашней работе 2
+
+\vspace{1cm}
+
+по дисциплине "Информатика"
+
+Тема: "Математические основы вычислительной техники"
+
+\vspace{1cm}
+
+Номер варианта: 6
+
+Дата сдачи отчета: 11.12.2020
+
+\vfill
+
+Москва
+2020
+\end{center}
+\end{titlepage}
+\normalsize
+
+\setcounter{page}{2}
+
+\section*{Задание 1}
+
+Канал связи задан двумя распределениями: $p(y / x)$ и $p(x)$.
+
+\begin{table}[h]
+$\begin{array}{c *{5}{|c} |}
+& x_1 & x_2 & x_3 & x_4 & x_5 \\ \hline
+p(x) & \frac{4}{19} & \frac{6}{19} & \frac{4}{19} & \frac{2}{19} & \frac{3}{19} \\ \hline
+\end{array}$
+\caption{$p(x)$}
+\end{table}
+
+\begin{table}[h]
+$\begin{array}{c *{5}{|c} |}
+& y_1 & y_2 & y_3 & y_4 & y_5 \\ \hline
+x_1 & \frac{8}{9} & \frac{1}{9} & 0 & 0 & 0 \\ \hline
+x_2 & \frac{3}{18} & \frac{5}{18} & \frac{4}{18} & 0 & \frac{6}{18} \\ \hline
+x_3 & 0 & 0 & \frac{2}{8} & 0 & \frac{6}{8} \\ \hline
+x_4 & \frac{9}{29} & \frac{9}{29} & \frac{1}{29} & \frac{6}{29} & \frac{4}{29} \\ \hline
+x_5 & 0 & 0 & \frac{1}{16} & \frac{8}{16} & \frac{7}{16} \\ \hline
+\end{array}$
+\caption{$p(y / x)$}
+\end{table}
+
+Схематично нарисуем модель канала.
+Стрелки показывают что можно получить на приемнике при отправке определенного сообщения.
+Например, отправив $x_1$ можно получить либо $y_1$, либо $y_2$.
+
+$$
+\begin{tikzcd}
+x_1 \arrow[rr] \arrow[drr] && y_1 \\
+x_2 \arrow[urr] \arrow[rr] \arrow[drr] \arrow[dddrr] && y_2\\
+x_3 \arrow[rr] \arrow[ddrr] && y_3 \\
+x_4 \arrow[uuurr] \arrow[uurr] \arrow[urr] \arrow[rr] \arrow[drr] && y_4 \\
+x_5 \arrow[uurr] \arrow[urr] \arrow[rr] && y_5 \\
+\end{tikzcd}
+$$
+
+Для того чтобы найти взаимную информацию вспомним несколько формул.
+
+\begin{gather*}
+I(x, y) = H(y) - H(y / x) \\
+H(y) = - \sum_{j} p(y_j) \cdot log_2 p(y_j) \\
+H(y / x) = - \sum_{i} \sum_{j} p(x_i, y_j) \cdot log_2 p(y_j / x_i) \\
+\end{gather*}
+
+\begin{gather*}
+p(y_j) = \sum_{i} p(x_i, y_j) \\
+p(x, y) = p(x) \cdot p(y / x)
+\end{gather*}
+
+Для начала посчитаем $p(x, y)$.
+Для этого нужно просто умножить каждый элемент матрицы $p(y / x)$ на соответствующую вероятность $p(x)$.
+Например $p(x_1, y_1) = p(x_1) \cdot p(y_1 / x_1), p(x_1, y_2) = p(x_1) \cdot p(y_2 / x_1)$.
+
+\begin{table}[h]
+$\begin{array}{c *{5}{|c} |}
+& y_1 & y_2 & y_3 & y_4 & y_5 \\ \hline
+x_1 & \frac{32}{171} & \frac{4}{171} & 0 & 0 & 0 \\ \hline
+x_2 & \frac{18}{342} & \frac{30}{342} & \frac{24}{342} & 0 & \frac{36}{342} \\ \hline
+x_3 & 0 & 0 & \frac{8}{152} & 0 & \frac{24}{152} \\ \hline
+x_4 & \frac{18}{551} & \frac{18}{551} & \frac{2}{551} & \frac{12}{551} & \frac{8}{551} \\ \hline
+x_5 & 0 & 0 & \frac{3}{304} & \frac{24}{304} & \frac{21}{304} \\ \hline
+\end{array}$
+\caption{$p(x, y)$}
+\end{table}
+
+Найдем $p(y_j)$.
+Для этого нужно просто просуммировать элемнты каждого столбца матрицы $p(x, y)$.
+
+\begin{gather*}
+p(y_1) = \frac{32}{171} + \frac{18}{342} + 0 + \frac{18}{551} + 0 = \frac{1351}{4959} \\
+p(y_2) = \frac{4}{171} + \frac{30}{342} + 0 + \frac{18}{551} + 0 = \frac{713}{4959} \\
+p(y_3) = 0 + \frac{24}{342} + \frac{8}{152} + \frac{2}{551} + \frac{3}{304} = \frac{3605}{26448} \\
+p(y_4) = 0 + 0 + 0 + \frac{12}{551} + \frac{24}{304} = \frac{111}{1102} \\
+p(y_5) = 0 + \frac{36}{342} + \frac{24}{152} + \frac{8}{551} + \frac{21}{304} = \frac{3057}{8816}
+\end{gather*}
+
+Сделаем проверку.
+Сумма всех $p(y_i)$ должна быть равна единице, так как это полная группа событий.
+
+$$\frac{1351}{4959} + \frac{713}{4959} + \frac{3605}{26448} + \frac{111}{1102} + \frac{3057}{8816} = 1$$
+%1351/4959+713/4959+3605/26448+111/1102+3057/8816
+
+\begin{table}[h]
+$\begin{array}{c *{5}{|c} |}
+& y_1 & y_2 & y_3 & y_4 & y_5 \\ \hline
+p(y) & \frac{1351}{4959} & \frac{713}{4959} & \frac{3605}{26448} & \frac{111}{1102} & \frac{3057}{8816} \\ \hline
+\end{array}$
+\caption{$p(y)$}
+\end{table}
+
+\newpage
+
+Посчитаем энтропию $H(y)$.
+
+\begin{gather*}
+H(y) = - \biggl( \frac{1351}{4959} \cdot log_{2} \frac{1351}{4959} + \frac{713}{4959} \cdot log_{2} \frac{713}{4959} + \frac{3605}{26448} \cdot log_{2} \frac{3605}{26448} + \\
+\frac{111}{1102} \cdot log_{2} \frac{111}{1102} + \frac{3057}{8816} \cdot log_{2} \frac{3057}{8816} \biggr) \approx 2.1686847
+\end{gather*}
+%(1351/4959)*log2(1351/4959) + (713/4959)*log2(713/4959) + (3605/26448)*log2(3605/26448) + (111/1102)*log2(111/1102) + (3057/8816)*log2(3057/8816)
+
+Посчитаем энтропию $H(y / x)$.
+
+\begin{align*}
+& H(y / x) = - \biggl( \frac{32}{171} \cdot log_{2} \frac{8}{9} + \frac{4}{171} \cdot log_{2} \frac{1}{9} + 0 + 0 + 0 + \\
+& \frac{18}{342} \cdot log_{2} \frac{3}{18} + \frac{30}{342} \cdot log_{2} \frac{5}{18} + \frac{24}{342} \cdot log_{2} \frac{4}{18} + 0 + \frac{36}{342} \cdot log_{2} \frac{6}{18} + \\
+& 0 + 0 + \frac{8}{152} \cdot log_{2} \frac{2}{8} + 0 + \frac{24}{152} \cdot log_{2} \frac{6}{8} + \\
+& \frac{18}{551} \cdot log_{2} \frac{9}{29} + \frac{18}{551} \cdot log_{2} \frac{9}{29} + \frac{2}{551} \cdot log_{2} \frac{1}{29} + \frac{12}{551} \cdot log_{2} \frac{6}{29} + \frac{8}{551} \cdot log_{2} \frac{4}{29} + \\
+& 0 + 0 + \frac{3}{304} \cdot log_{2} \frac{1}{16} + \frac{24}{304} \cdot log_{2} \frac{8}{16} + \frac{21}{304} \cdot log_{2} \frac{7}{16} \biggr) \approx 1.3137435
+\end{align*}
+%-0.10594912311 = (32/171)*log2(8/9) + (4/171)*log2(1/9)
+%-0.6172692464 = (18/342)*log2(3/18) + (30/342)*log2(5/18) + (24/342)*log2(4/18) + (36/342)*log2(6/18)
+%-0.17079539462 = (8/152)*log2(2/8) + (24/152)*log2(6/8)
+%-0.21892204656 = (18/551)*log2(9/29) + (18/551)*log2(9/29) + (2/551)*log2(1/29) + (12/551)*log2(6/29) + (8/551)*log2(4/29)
+%-0.2008077192 = (3/304)*log2(1/16) + (24/304)*log2(8/16) + (21/304)*log2(7/16)
+
+Взяв разность найденных энтропий получим взаимную информацию.
+
+$$I(x, y) \approx 2.1686847 - 1.3137435 \approx 0.8549412 \text{ бит}$$
+
+\newpage
+
+Посмотрим что будет при другом распределении вероятностей над входным алфавитом. Чтобы отличать новые распределения от старых будем обозначать их $\tilde{x}$ и $\tilde{y}$.
+Пусть все сообщения источника равновероятны, т.е. все $p(\tilde{x}_i)$ равны.
+
+\begin{table}[h]
+$\begin{array}{c *{5}{|c} |}
+& \tilde{x}_1 & \tilde{x}_2 & \tilde{x}_3 & \tilde{x}_4 & \tilde{x}_5 \\ \hline
+p(\tilde{x}) & \frac{1}{5} & \frac{1}{5} & \frac{1}{5} & \frac{1}{5} & \frac{1}{5} \\ \hline
+\end{array}$
+\caption{$p(\tilde{x})$}
+\end{table}
+
+Аналогично предыдущему посчитаем совместную информацию $I(\tilde{x}, \tilde{y})$.
+
+Посчитаем $p(\tilde{x}, \tilde{y})$.
+
+\begin{table}[h]
+$\begin{array}{c *{5}{|c} |}
+& \tilde{y}_1 & \tilde{y}_2 & \tilde{y}_3 & \tilde{y}_4 & \tilde{y}_5 \\ \hline
+\tilde{x}_1 & \frac{8}{45} & \frac{1}{45} & 0 & 0 & 0 \\ \hline
+\tilde{x}_2 & \frac{3}{90} & \frac{5}{90} & \frac{4}{90} & 0 & \frac{6}{90} \\ \hline
+\tilde{x}_3 & 0 & 0 & \frac{2}{40} & 0 & \frac{6}{40} \\ \hline
+\tilde{x}_4 & \frac{9}{145} & \frac{9}{145} & \frac{1}{145} & \frac{6}{145} & \frac{4}{145} \\ \hline
+\tilde{x}_5 & 0 & 0 & \frac{1}{80} & \frac{8}{80} & \frac{7}{80} \\ \hline
+\end{array}$
+\caption{$p(\tilde{x}, \tilde{y})$}
+\end{table}
+
+Посчитаем $p(\tilde{y})$.
+
+\begin{table}[h]
+$\begin{array}{c *{5}{|c} |}
+& \tilde{y}_1 & \tilde{y}_2 & \tilde{y}_3 & \tilde{y}_4 & \tilde{y}_5 \\ \hline
+p(\tilde{y}) & \frac{713}{2610} & \frac{73}{522} & \frac{2377}{20880} & \frac{41}{290} & \frac{2309}{6960}
+\end{array}$
+\caption{$p(\tilde{y})$}
+\end{table}
+
+Посчитаем $H(\tilde{y})$.
+
+\begin{gather*}
+H(\tilde{y}) = - \biggl( \frac{713}{2610} \cdot \log_2 \frac{713}{2610} + \frac{73}{522} \cdot \log_2 \frac{73}{522} + \frac{2377}{20880} \cdot \log_2 \frac{2377}{20880} + \\
+\frac{41}{290} \cdot \log_2 \frac{41}{290} + \frac{2309}{6960} \cdot \log_2 \frac{2309}{6960} \biggr) \approx 2.1923048
+\end{gather*}
+
+%(713/2610)*log2(713/2610) + (73/522)*log2(73/522) + (2377/20880)*log2(2377/20880) + (41/290)*log2(41/290) + (2309/6960)*log2(2309/6960)
+
+\newpage
+
+Посчитаем $H(\tilde{y} / \tilde{x})$.
+
+\begin{align*}
+& H(\tilde{y} / \tilde{x}) = - \biggl( \frac{8}{45} \cdot log_2 \frac{8}{9} + \frac{1}{45} \cdot log_2 \frac{1}{9} + 0 + 0 + 0 + \\
+& \frac{3}{90} \cdot log_2 \frac{3}{18} + \frac{5}{90} \cdot log_2 \frac{5}{18} + \frac{4}{90} \cdot log_2 \frac{4}{18} + 0 + \frac{6}{90} \cdot log_2 \frac{6}{18} + \\
+& 0 + 0 + \frac{2}{40} \cdot log_2 \frac{2}{8} + 0 + \frac{6}{40} \cdot log_2 \frac{6}{8} + \\
+& \frac{9}{145} \cdot log_2 \frac{9}{29} + \frac{9}{145} \cdot log_2 \frac{9}{29} + \frac{1}{145} \cdot log_2 \frac{1}{29} + \frac{6}{145} \cdot log_2 \frac{6}{29} + \frac{4}{145} \cdot log_2 \frac{4}{29} + \\
+& 0 + 0 + \frac{1}{80} \cdot log_2 \frac{1}{16} + \frac{8}{80} \cdot log_2 \frac{8}{16} + \frac{7}{80} \cdot log_2 \frac{7}{16} \biggr) \approx 1.324153
+\end{align*}
+
+%(8/45)*log2(8/9) + (1/45)*log2(1/9)
+%(3/90)*log2(3/18) + (5/90)*log2(5/18) + (4/90)*log2(4/18) + (6/90)*log2(6/18)
+%(2/40)*log2(2/8) + (6/40)*log2(6/8)
+%(9/145)*log2(9/29) + (9/145)*log2(9/29) + (1/145)*log2(1/29) + (6/145)*log2(6/29) + (4/145)*log2(4/29)
+%(1/80)*log2(1/16) + (8/80)*log2(8/16) + (7/80)*log2(7/16)
+
+Посчитаем $I(\tilde{x}, \tilde{y})$.
+
+$$I(\tilde{x}, \tilde{y}) \approx 2.1923048 - 1.324153 \approx 0.8681518 \text{ бит}$$
+
+Видно, что $I(\tilde{x}, \tilde{y}) > I(x, y)$.
+Поэтому пропускная способность $C$ канала из задачи не меньше $I(\tilde{x}, \tilde{y}) \approx 0.8681518$. Но может быть и больше, т.к. $C = max_{p(x)} I(x, y)$ и возможно найдется распределение источника дающее ещё большую совместную информацию.
+
+\newpage
+
+\section*{Задание 2}
+
+Используем следующую таблицу встречаемости букв (взято в руссокой википедии).
+
+\renewcommand{\arraystretch}{1}
+\begin{table}[h]
+$\begin{tabular}{| c | c |}
+\hline Буква & Частота, \% \\ \hline
+а & 8.01 \\ \hline
+б & 1.59 \\ \hline
+в & 4.54 \\ \hline
+г & 1.70 \\ \hline
+д & 2.98 \\ \hline
+е & 8.45 \\ \hline
+ё & 0.04 \\ \hline
+ж & 0.94 \\ \hline
+з & 1.65 \\ \hline
+и & 7.35 \\ \hline
+й & 1.21 \\ \hline
+к & 3.49 \\ \hline
+л & 4.40 \\ \hline
+м & 3.21 \\ \hline
+н & 6.70 \\ \hline
+о & 10.97 \\ \hline
+п & 2.81 \\ \hline
+р & 4.73 \\ \hline
+с & 5.47 \\ \hline
+т & 6.26 \\ \hline
+у & 2.62 \\ \hline
+ф & 0.26 \\ \hline
+х & 0.97 \\ \hline
+ц & 0.48 \\ \hline
+ч & 1.44 \\ \hline
+ш & 0.73 \\ \hline
+щ & 0.36 \\ \hline
+ъ & 0.04 \\ \hline
+ы & 1.90 \\ \hline
+ь & 1.74 \\ \hline
+э & 0.32 \\ \hline
+ю & 0.64 \\ \hline
+я & 2.01 \\ \hline
+\end{tabular}$
+\caption{Встречаемость букв руссокго алфавита}
+\end{table}
+
+Информация, которая содержится в последовательности, суть сумма информаций каждого символа, которые равны $- log_2 p$.
+ФИО - ефремов виктор васильевич.
+Для удобства счета разобьем буквы по их количеству в сообщении.
+в - 4; е - 3; и, о, р - 2; а, к, л, м, с, т, ф, ч, ь.
+
+\newpage
+
+Поэтому в моем ФИО содержится
+
+\begin{gather*}
+I = - \bigl( 4 \cdot log_2 0.0454 + 3 \cdot log_2 0.0845 + 2 \cdot (log_2 h0.0735 + log_2 0.01097 + log_2 0.0473) + \\
+1 \cdot (log_2 0.0801 + log_2 0.0349 + log_2 0.0440 + log_2 0.0321 + log_2 0.0547 + \\
+log_2 0.0626 + log_2 0.0026 + log_2 0.0144 + log_2 0.0174) \bigr) \approx 104.586 \text{ бит}
+\end{gather*}
+%4*log2(0.0454) + 3*log2(0.0845) + 2*(log2(0.0735) + log2(0.01097) + log2(0.0473)) + 1*(log2(0.0801) + log2(0.0349) + log2(0.0440) + log2(0.0321) + log2(0.0547) + log2(0.0626) + log2(0.0026) + log2(0.0144) + log2(0.0174)) 
+
+Если закодировать все то же ФИО равномерным двоичным кодом, то на каждый сивол уйдет по 6 бит, т.к. $2^5 < 33 \leq 2^6$ и всего информации будет $6 \cdot 23 = 138$ бит.
+
+\end{document}
