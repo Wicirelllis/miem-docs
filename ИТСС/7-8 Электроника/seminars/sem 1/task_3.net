@@ -1,0 +1,14 @@
+* D:\Wicirelllis\sem 1\task_3.asc
+V1 N001 0 SINE(0 25 9k)
+D1 N001 N002 Botov
+C1 N002 0 12µ
+R1 a N002 6k
+D2 0 a Efremov
+R2 a 0 5k
+.model D D
+.lib C:\Program Files (x86)\LTC\LTspiceIV\lib\cmp\standard.dio
+.model Efremov D IS=7n N=1.03 BV=7 IBV=4u RS=15m TT=12n CJO=14p
+.model Botov D IS=12n N=1 RS=35m TT=5n CJO=12p
+.tran 0 1.555m 1.111m
+.backanno
+.end

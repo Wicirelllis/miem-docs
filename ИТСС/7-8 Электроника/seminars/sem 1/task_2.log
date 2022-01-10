@@ -1,0 +1,22 @@
+Circuit: * D:\Wicirelllis\sem 1\task_2.asc
+
+V1: Missing value, assumed 0V @ DC
+
+Date: Mon Jan 10 15:29:00 2022
+Total elapsed time: 0.052 seconds.
+
+tnom = 27
+temp = 27
+method = trap
+totiter = 1754
+traniter = 0
+tranpoints = 0
+accept = 0
+rejected = 0
+matrix size = 3
+fillins = 0
+solver = Normal
+Matrix Compiler1: 86 байт object code size  0.1/0.1/[0.0]
+Matrix Compiler2: 163 байт object code size  0.0/0.0/[0.0]
+
+
