@@ -1,0 +1,75 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsfonts}
+\usepackage[english,russian]{babel}
+\usepackage[T1,T2A]{fontenc}
+\frenchspacing
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+
+\newtheorem{name}{Printed output}
+\newtheorem{problem}{Задача}
+\newenvironment{solution}{\renewcommand{\proofname}{\unskip\indent\nopunct}\begin{proof}}{\end{proof}}
+
+\begin{document}
+
+\title{ДЗ 2}
+\author{Витя\,Ефремов}
+\maketitle
+
+\begin{problem}
+Вероятность события А равна 0.1, вероятность события B равна 0.2.
+Условная вероятность события А при условии, что произойдет событие В, равна 0.25.
+Найти вероятность суммы событий А и В.
+Найти условную вероятность, что произойдет событие В, если известно, что произошло событие А.
+\end{problem}
+\begin{solution}
+По определению
+$$P(A \mid B) = \frac{P(AB)}{P(B)}$$
+Откуда
+$$P(A B) = P(A \mid B) P(B) = 0.25 \cdot 0.2 = 0.05$$
+Из теоремы Байеса
+$$P(B \mid A) = \frac{P(A \mid B) P(B)}{P(A)} = \frac{0.25 \cdot 0.2}{0.1} = 0.5$$
+\end{solution}
+
+\begin{problem}
+Из колоды, содержащей 36 карт, достали две карты.
+Выясните, зависимы ли события: А – одна из этих карт дама, другая – король, и В – обе эти карты пиковой масти.
+\end{problem}
+\begin{solution}
+Вытащить даму можно $4$ способами, короля -- тоже. Любые комбинации возможны, поэтому
+$$P(A) = \frac{4 \cdot 4}{C_{36}^{2}} = \frac{4 \cdot 4 \cdot 34! \cdot 2!}{36!} = \frac{8}{315} \approx 0.0254$$
+Вероятность $B$ очевидна
+$$P(B) = \frac{C_{9}^{2}}{C_{36}^{2}} = \frac{9! \cdot 34! \cdot 2!}{7! \cdot 2! \cdot 36!} = \frac{8 \cdot 9}{35 \cdot 36} = \frac{2}{35} \approx 0.0571$$
+Пересечние событий $A$ и $B$ -- это событие ``вытащить пиковых даму и короля`` и его вероятность
+$$P(AB) = \frac{1}{C_{36}^2} = \frac{34! \cdot 2!}{36!} = \frac{1}{630} \approx 0.00159$$
+Легко видеть, что
+$$P(AB) \neq P(A) P(B)$$
+Откуда вывод -- события зависимы.
+\end{solution}
+
+\begin{problem}
+Студент решает задачу по математике.
+С вероятностью 0,15 он неправильно перепишет условие задачи.
+Если он все же переписал его правильно, то с вероятностью 0,3 он выберет неправильный способ решения.
+Если он выбрал правильный способ решения, то с вероятностью 0,2 он допустит ошибку в вычислениях.
+Задача решена неверно.
+Какова вероятность того, что студент выбрал неправильный способ решения?
+\end{problem}
+\begin{solution}
+Обозначим три события $A$ -- ``неправильно переписал условие``, $B$ -- ``выбрал неправильный способ решения``, $C$ -- ``допустил ошибку в вычисленияях``.
+Тогда вероятность решить задачу неверно это
+$$P(A) + P(\overline{A})\left(P(B) + P(\overline{B}) P(C) \right) = 0.15 + 0.85 \cdot (0.3 + 0.7 \cdot 0.2) = 0.524$$
+Вероятность выбрать неправильный способ решения это
+$$P(\overline{A}) P(B) = 0.85 \cdot 0.3 = 0.255$$
+Откуда итоговая вероятность
+$$p = \frac{0.255}{0.524} \approx 0.4866$$
+\end{solution}
+
+\end{document}
