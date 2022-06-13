@@ -1,0 +1,58 @@
+Circuit: * E:\sem_17\3.1.asc
+
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+Gmin = 0.000142725
+Gmin = 1.5325e-005
+Gmin = 1.6455e-006
+Gmin = 1.76685e-007
+Gmin = 1.89714e-008
+Gmin = 2.03704e-009
+Gmin = 2.18725e-010
+Gmin = 2.34854e-011
+Gmin = 2.52173e-012
+Gmin = 2.70769e-013
+Gmin = 0
+Gmin stepping succeeded in finding the operating point.
+
+N-Period=1
+Fourier components of V(out)
+DC component:0.117302
+
+Harmonic	Frequency	 Fourier 	Normalized	 Phase  	Normalized
+ Number 	  [Hz]   	Component	 Component	[degree]	Phase [deg]
+    1   	8.000e+01	7.201e-02	1.000e+00	   -2.96°	    0.00°
+    2   	1.600e+02	3.555e-02	4.936e-01	   -1.47°	    1.49°
+    3   	2.400e+02	2.364e-02	3.283e-01	   -0.97°	    1.99°
+    4   	3.200e+02	1.772e-02	2.460e-01	   -0.72°	    2.24°
+    5   	4.000e+02	1.417e-02	1.967e-01	   -0.56°	    2.40°
+    6   	4.800e+02	1.180e-02	1.639e-01	   -0.43°	    2.53°
+    7   	5.600e+02	1.012e-02	1.405e-01	   -0.25°	    2.71°
+    8   	6.400e+02	8.907e-03	1.237e-01	   -0.48°	    2.48°
+    9   	7.200e+02	7.871e-03	1.093e-01	   -0.42°	    2.54°
+Total Harmonic Distortion: 72.423845%(79.129883%)
+
+
+
+Date: Thu Jun 02 17:40:00 2022
+Total elapsed time: 0.397 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2563
+traniter = 2212
+tranpoints = 1107
+accept = 1105
+rejected = 2
+matrix size = 13
+fillins = 6
+solver = Normal
+Matrix Compiler1:      38 opcodes  0.2/[0.2]/0.2
+Matrix Compiler2: 1.18 KB object code size  0.1/0.2/[0.1]
+

@@ -1,0 +1,18 @@
+K_U(static) = 15.504507M
+K_U(dinamic) = 736k
+Total Harmonic Distortion: 0.027965%(0.059707%)
+Total Harmonic Distortion: 41.802357%(44.233788%)
+
+	3.a
+K_U = 45
+R_gen = 500
+R = 45*500 = 22.5k
+
+	3.c
+V_in = 111n
+I_in = 0.00344f
+R_in = 32.3 M
+
+V_out_1 = 627.89m
+V_out_2 = 629.21m
+R_out = 3.15 Ohm

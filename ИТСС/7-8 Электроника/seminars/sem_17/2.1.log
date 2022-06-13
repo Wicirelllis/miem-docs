@@ -1,0 +1,40 @@
+Circuit: * D:\Wicirelllis\sem_17\2.1.asc
+
+Direct Newton iteration for .op point succeeded.
+N-Period=1
+Fourier components of V(out)
+DC component:0.00703801
+
+Harmonic	Frequency	 Fourier 	Normalized	 Phase  	Normalized
+ Number 	  [Hz]   	Component	 Component	[degree]	Phase [deg]
+    1   	8.000e+01	2.205e+00	1.000e+00	  -87.58°	    0.00°
+    2   	1.600e+02	3.366e-04	1.526e-04	  -21.71°	   65.86°
+    3   	2.400e+02	2.518e-04	1.142e-04	  -30.29°	   57.29°
+    4   	3.200e+02	2.151e-04	9.753e-05	  -36.39°	   51.19°
+    5   	4.000e+02	1.956e-04	8.869e-05	  -40.21°	   47.37°
+    6   	4.800e+02	1.828e-04	8.290e-05	  -42.58°	   45.00°
+    7   	5.600e+02	1.742e-04	7.897e-05	  -44.23°	   43.35°
+    8   	6.400e+02	1.687e-04	7.648e-05	  -45.06°	   42.52°
+    9   	7.200e+02	1.642e-04	7.446e-05	  -45.03°	   42.55°
+Total Harmonic Distortion: 0.027965%(0.059707%)
+
+
+
+Date: Tue May 31 10:13:01 2022
+Total elapsed time: 0.082 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 5753
+traniter = 5730
+tranpoints = 2866
+accept = 2101
+rejected = 765
+matrix size = 14
+fillins = 2
+solver = Normal
+Matrix Compiler1: 546 αΰις object code size  0.1/0.1/[0.0]
+Matrix Compiler2: off  [0.1]/0.1/0.3
+
+
