@@ -47,21 +47,21 @@ class hw_1:
                 sys.exit(0)
             elif s == "help":
                 print(
-                    "\nType single key (from '1234567890*#ABCDabcd', either lower or uppercase are acceptable) to play corresponding beep and show plot."
-                    "\nType sequence of key symbols (e.g. *1801#) to play beeps in sequence. No plot is shown in this mode."
-                    "\nAlso the following options are available:"
-                    "\n    get"
-                    "\n        Get the value of parameter. Available parameters are:"
-                    "\n            fs - sampling frequency, Hz. Must be integer. Default is 10000Hz"
-                    "\n            dur - duration of the beep, seconds. Default is 0.5s"
-                    "\n        Example: get fs"
-                    "\n    set"
-                    "\n        Set the value of parameter. Same options as get."
-                    "\n        Example: set fs 2000"
-                    "\n    help"
-                    "\n        Print this help page."
-                    "\n    exit"
-                    "\n        Close the program."
+"\nType single key from '1234567890*#ABCDabcd' to play corresponding beep and show plot."
+"\nType sequence of keys (e.g. *1801#) to play beeps in sequence. No plot is shown in this mode."
+"\nAlso the following options are available:"
+"\n    get"
+"\n        Get the value of parameter. Available parameters are:"
+"\n            fs - sampling frequency, Hz. Must be integer. Default is 10000Hz"
+"\n            dur - duration of the beep, seconds. Default is 0.5s"
+"\n        Example: get fs"
+"\n    set"
+"\n        Set the value of parameter. Same options as get."
+"\n        Example: set fs 2000"
+"\n    help"
+"\n        Print this help page."
+"\n    exit"
+"\n        Close the program."
                 )
                 continue
             elif s.startswith("get"):

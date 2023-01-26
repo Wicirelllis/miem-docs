@@ -1,0 +1,73 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsfonts}
+\usepackage[english,russian]{babel}
+\usepackage[T1, T2A]{fontenc}
+\frenchspacing
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{noto}
+\usepackage[table]{xcolor}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{minted}
+\usepackage[obeyspaces]{xurl}
+\usepackage{hyperref}
+\graphicspath{ {./} }
+\renewcommand{\baselinestretch}{1.1}
+\renewcommand{\arraystretch}{1.1}
+
+
+\begin{document}
+
+\sloppy
+
+\title{ДЗ 1}
+\author{Витя\,Ефремов}
+\maketitle
+
+\tableofcontents
+
+\section{Теория}
+Если говорить о цифровых сигналах, то их отличие от аналоговых в дискретности.
+Дискретность по времени обычно называют дискретизацией.
+Дискретность по ампллитуде - квантованием.
+А цифровым считают сигнал дискретный и по времени, и по амплитуде.
+
+Дискретизация сигнала - это семплирование, представление непрерывного сигнала/функции набором точек/значений.
+Количество семплов в секунду - частота дискретизации.
+Исторически стандартными частотами дискретизации являются 44.1 и 48 кГц.
+Человек слышит звуки до примерно 20 кГц.
+Из теоремы Котельникова следует, что частота дискретизации должна быть вдвое больше.
+Откуда и получается частота чуть больше 40 кГц.
+В \href{https://en.wikipedia.org/wiki/44,100_Hz}{вики} есть обсуждение других, менее значительных причин.
+
+Тональный режим используется для передачи слежбной информации по телефонной сети.
+Например, вызываемый номер.
+Тональный режим позволяет кодировать 16 символов - \texttt{1234567890*\#ABCD}.
+Каждый символ кодируется коротким звуковым сигналом состоящим из суммы двух синусоид.
+
+\begin{table*}[ht]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline & 1209 & 1336 & 1477 & 1633 \\
+        \hline 697 & 1 & 2 & 3 & A \\
+        \hline 770 & 4 & 5 & 6 & B \\
+        \hline 852 & 7 & 8 & 9 & C \\
+        \hline 941 & * & 0 & \# & D \\
+        \hline
+    \end{tabular}
+    \caption{Частоты синусоид}
+\end{table*}
+
+\section{Приложение. Код}
+Код также доступен в репозитории на гитхабе.
+\url{https://github.com/Wicirelllis/miem-docs/blob/master/ИТСС/11-12 Цифровая обработка сигналов/hw_1/hw_1.py}
+
+\inputminted[fontsize=\scriptsize]{python}{hw_1.py}
+
+\end{document}
